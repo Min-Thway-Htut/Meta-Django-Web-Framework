@@ -23,3 +23,14 @@ def testing(request):
 </center>'''.format(path, method)
     return HttpResponse(content)
 
+
+def menuitems(request, player):
+    players = {
+        'ronaldo': 'Portugese Player',
+        'messi': 'Argentinean Player',
+        'neymar': 'Brazilian Player',
+    }
+
+    description = players[player]
+
+    return HttpResponse(f"<h2>{player}</h2>" + description)
