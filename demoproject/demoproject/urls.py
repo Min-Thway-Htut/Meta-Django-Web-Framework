@@ -8,4 +8,7 @@ urlpatterns = [
     path('homepage/', views.homepage),
     path('display_data/', views.display_data),
     path('testing/', views.testing),
+    path('current_datetime/', views.current_datetime)
 ]
+
+handler404 = 'demoproject.views.handler404'

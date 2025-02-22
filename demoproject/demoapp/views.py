@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 from datetime import datetime
 
 def index(request):
@@ -11,6 +11,12 @@ def homepage(request):
 def display_data(request):
     data_joined = datetime.today().year
     return HttpResponse(data_joined)
+
+def current_datetime(request):
+    now = datetime.now()
+    html = "<html><body>It is now %s.</body></html>" % now
+    return HttpResponse(html)
+
 
 def testing(request):
     path = request.path
