@@ -28,3 +28,59 @@ class Vehicle(models.Model):
         on_delete=models.CASCADE,
         related_name='Vehicle'
     )
+
+class Player(models.Model):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+
+
+class Striker(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    nationality = models.CharField(max_length=50)
+
+class Club(models.Model):
+    artist = models.ForeignKey(Player, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    release_date = models.DateField()
+    num_stars = models.IntegerField()
+
+class Artist(models.Model):
+    name = models.CharField(max_length=10)
+
+class Album(models.Model):
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
+
+class Song(models.Model):
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
+    album = models.ForeignKey(Album, on_delete=models.RESTRICT)
+
+# one-to-one relationship
+
+class College(models.Model):
+    CollegeID = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=50)
+    strength = models.IntegerField()
+    website = models.URLField()
+
+class Principle(models.Model):
+    CollegeID = models.OneToOneField(
+        College,
+        on_delete=models.CASCADE
+    )
+    Qualification = models.CharField(max_length=50)
+    email = models.EmailField(max_length=50)
+
+# many-to-many relationship
+
+class Teacher(models.Model):
+    TeacherID = models.IntegerField(primary_key=True)
+    Qualification = models.CharField(max_length=50)
+    email = models.EmailField(max_length=50)
+
+class Subject(models.Model):
+    Subjectcode = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=30)
+    credits = models.IntegerField()
+    teacher = models.ManyToManyField(Teacher)
+
