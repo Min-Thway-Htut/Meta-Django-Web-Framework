@@ -1,4 +1,13 @@
 from django import forms
 
-class DemoForm(forms.Form):
-    name = forms.CharField(widget=forms.Textarea)
+SHIFTS = (
+    ("1", "Moring"),
+    ("2", "Afternoon"),
+    ("3", "Evening"),
+)
+
+class InputForm(forms.Form):
+    first_name = forms.CharField(max_length=200)
+    last_name = forms.CharField(max_length=200)
+    shift = forms.ChoiceField(choices = SHIFTS)
+    time_log = forms.TimeField()
