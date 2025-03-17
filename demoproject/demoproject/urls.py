@@ -4,6 +4,7 @@ from demoapp import views
 from myapp import views
 
 urlpatterns = [
+    path('',include('demoapp.urls')),
     path('admin/', admin.site.urls),
 ]
 
